@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rory Green</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.5;
+            margin-bottom: 1.5em;
+        }
+        .links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #000000; /* Set link color to black */
+            font-size: 1em;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rory Green</h1>
+        <p>I'm the founder of <a href="https://AquaEdge.co" target="_blank">AquaEdge</a>, a social media marketing agency for car detailers and detailing businesses. We run paid advertising and direct clients to these businesses.</p>
+        <div class="links">
+            <a href="https://www.linkedin.com/in/rorygreen" target="_blank">LinkedIn</a>
+            <a href="https://www.instagram.com/rorygreen" target="_blank">Instagram</a>
+            <a href="mailto:rory@aquaedge.co" target="_blank">Email</a>
+        </div>
+    </div>
+</body>
+</html>
