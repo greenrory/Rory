@@ -1,43 +1,145 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Rory Green</title>
-        <link rel="stylesheet" href="styles.css">
-  <meta name="viewport" content="width=420" />
-        <!-- Metadata -->
-        <!-- Primary Meta Tags -->
-        <title>Rory Green</title>
-        <meta name="title" content="Rory Green">
-        <meta name="description" content="rlg">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rory Green</title>
+  <meta name="description" content="Rory Green — personal site">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rorygreen.co/">
+  <meta property="og:title" content="Rory Green">
+  <meta property="og:description" content="Rory Green — personal site">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://rorygreen.co/">
-        <meta property="og:title" content="Rory Green">
-        <meta property="og:description" content="rlg">
+  <header>
+    <div class="logo">rory.</div>
+    <nav class="social-links">
+      <a href="https://www.aquaedge.co/" target="_blank">AE</a>
+      <a href="mailto:rory@aquaedge.co">MSG</a>
+      <a href="https://www.linkedin.com/in/greenrory/" target="_blank">IN</a>
+    </nav>
+  </header>
 
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <main class="timeline">
+    <div class="entry">
+      <span class="date" id="today-date"></span>
+      <span class="event"><span id="typewriter"></span><span class="cursor">|</span></span>
+    </div>
+    <div class="entry">
+      <span class="date">01.04.26</span>
+      <span class="event">Gets first beta user from door knocking around the neighborhood</span>
+    </div>
+    <div class="entry">
+      <span class="date">12.24.25</span>
+      <span class="event">First TikTok posted</span>
+    </div>
+    <div class="entry">
+      <span class="date">11.19.25</span>
+      <span class="event"><a href="https://www.aquaedge.co/" target="_blank">AquaEdge</a> Phase 3: AI teaching platform</span>
+    </div>
+    <div class="entry">
+      <span class="date">10.01.24</span>
+      <span class="event"><a href="https://www.aquaedge.co/" target="_blank">AquaEdge</a> Phase 2: AI salesperson &amp; lead capturing software</span>
+    </div>
+    <div class="entry">
+      <span class="date">05.01.24</span>
+      <span class="event">Founds <a href="https://www.aquaedge.co/" target="_blank">AquaEdge</a> — Phase 1: ad campaigns &amp; automated lead nurturing for auto detailing businesses</span>
+    </div>
+    <div class="entry">
+      <span class="date">04.26.24</span>
+      <span class="event">Starts Island Wash, a mobile carwash business</span>
+    </div>
+    <div class="entry">
+      <span class="date">08.15.22</span>
+      <span class="event">Rory quits video games forever</span>
+    </div>
+    <div class="entry">
+      <span class="date">08.19.20</span>
+      <span class="event">Starts a Roblox &amp; Minecraft YouTube channel</span>
+    </div>
+    <div class="entry">
+      <span class="date">09.21</span>
+      <span class="event">Rory is born</span>
+    </div>
+  </main>
 
+  <footer>
+    <div class="footer-left">&copy; 2025 <a href="#">Rory Green</a></div>
+    <div class="footer-center">rg</div>
+    <div class="footer-right">Rory Time: <span id="clock"></span></div>
+  </footer>
 
-</script>
+  <script>
+    (function() {
+      var now = new Date();
+      var mm = String(now.getMonth() + 1).padStart(2, '0');
+      var dd = String(now.getDate()).padStart(2, '0');
+      var yy = String(now.getFullYear()).slice(-2);
+      document.getElementById('today-date').textContent = mm + '.' + dd + '.' + yy;
+    })();
 
-    </head>
+    (function() {
+      var phrases = [
+        'More coming soon..',
+        'Building in public..',
+        'Probably shipping something..',
+        'Writing, thinking, making..',
+        'Work in progress..'
+      ];
+      var el = document.getElementById('typewriter');
+      var phraseIdx = 0;
+      var charIdx = 0;
+      var deleting = false;
 
-    <body>
-        <div>
-            <h1>Rory Green</h1>
-            <i></i>
-            <p>I’m the founder of <a href="https://aquaedge.co" target="_blank">AquaEdge</a>, which the AI teaching platform where students have voice to voice conversations with Phil - our AI teacher who remembers how they learn and helps them go from struggling to understanding.
-            <h2>Reach Out</h2>
-            <div class="social-container">
-                 <a class="social-link" href="https://www.linkedin.com/in/greenrory/" target="_blank">Linkedin</a> 
-                <a class="social-link" href="mailto:rory@aquaedge.co" target="_blank">Email</a>            </div>
+      function tick() {
+        var phrase = phrases[phraseIdx];
 
-        </div>
-    </body>
+        if (deleting) {
+          charIdx--;
+          el.textContent = phrase.substring(0, charIdx);
+        } else {
+          charIdx++;
+          el.textContent = phrase.substring(0, charIdx);
+        }
+
+        var delay = deleting ? 40 : 80;
+
+        if (!deleting && charIdx === phrase.length) {
+          delay = 2200;
+          deleting = true;
+        } else if (deleting && charIdx === 0) {
+          deleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          delay = 600;
+        }
+
+        setTimeout(tick, delay);
+      }
+
+      tick();
+    })();
+
+    (function() {
+      function updateClock() {
+        var now = new Date();
+        var str = now.toLocaleTimeString('en-US', {
+          timeZone: 'America/New_York',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        });
+        document.getElementById('clock').textContent = str;
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
+  </script>
+
+</body>
 </html>
