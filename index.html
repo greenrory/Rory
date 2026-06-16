@@ -2,144 +2,273 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Rory Green</title>
-  <meta name="description" content="Rory Green — personal site">
+  <meta name="description" content="Rory Green — founder of AquaEdge.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://rorygreen.co/">
   <meta property="og:title" content="Rory Green">
-  <meta property="og:description" content="Rory Green — personal site">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta property="og:description" content="Rory Green — founder of AquaEdge.">
+  <style>
+    :root {
+      --black: #000;
+      --white: #fff;
+      --muted: #444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding:
+        max(64px, env(safe-area-inset-top))
+        max(28px, env(safe-area-inset-right))
+        max(64px, env(safe-area-inset-bottom))
+        max(28px, env(safe-area-inset-left));
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: auto 0;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.3px;
+      margin-bottom: 22px;
+    }
+
+    .pitch {
+      font-size: 17px;
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    .pitch a {
+      color: var(--black);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ---- Dashboard-style cards ---- */
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 56px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      min-height: 44px;
+      padding: 16px 18px;
+      border: 1.5px solid var(--black);
+      border-radius: 14px;
+      background: var(--white);
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .card:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 3px;
+    }
+
+    .card-icon {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1.5px solid var(--black);
+      border-radius: 11px;
+    }
+
+    .card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--black);
+      stroke-width: 1.6;
+      fill: none;
+    }
+
+    .card-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .card-sub {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* ---- Writing ---- */
+
+    .writing h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      margin-bottom: 16px;
+    }
+
+    .empty {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .post {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 18px;
+      padding: 14px 0;
+      border-top: 1px solid var(--black);
+    }
+
+    .post:last-child {
+      border-bottom: 1px solid var(--black);
+    }
+
+    .post-date {
+      flex: 0 0 92px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .post-body {
+      flex: 1 1 240px;
+    }
+
+    .post-title {
+      color: var(--black);
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .post-title:hover {
+      text-decoration: underline;
+    }
+
+    .post-title:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 2px;
+    }
+
+    .post-desc {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 560px) {
+      h1 {
+        font-size: 26px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .post-date {
+        flex-basis: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
+  <main class="container">
+    <h1>Rory Green</h1>
 
-  <header>
-    <div class="logo">rory.</div>
-    <nav class="social-links">
-      <a href="https://www.aquaedge.co/" target="_blank">AE</a>
-      <a href="mailto:rory@aquaedge.co">MSG</a>
-      <a href="https://www.linkedin.com/in/greenrory/" target="_blank">IN</a>
+    <p class="pitch">
+      Hi, I'm Rory, founder of <a href="https://www.aquaedge.co/" target="_blank" rel="noopener">AquaEdge</a> -
+      the AI tutor (Phil) that talks to students through personalized questioning that makes them think and
+      actually understand topics holistically. Anyone can love learning if done so in a way that clicks with them.
+    </p>
+
+    <nav class="cards">
+      <a class="card" href="https://www.aquaedge.co/" target="_blank" rel="noopener">
+        <span class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M7 10v5c0 1 2.2 2.5 5 2.5s5-1.5 5-2.5v-5"/></svg>
+        </span>
+        <span class="card-text">
+          <span class="card-title">AquaEdge</span>
+          <span class="card-sub">Phil, the AI tutor</span>
+        </span>
+      </a>
+
+      <a class="card" href="mailto:rory@aquaedge.co">
+        <span class="card-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </span>
+        <span class="card-text">
+          <span class="card-title">Email</span>
+          <span class="card-sub">Get in touch</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://www.linkedin.com/in/greenrory/" target="_blank" rel="noopener">
+        <span class="card-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v0M11 17v-4a2 2 0 0 1 4 0v4"/></svg>
+        </span>
+        <span class="card-text">
+          <span class="card-title">LinkedIn</span>
+          <span class="card-sub">Connect with me</span>
+        </span>
+      </a>
     </nav>
-  </header>
 
-  <main class="timeline">
-    <div class="entry">
-      <span class="date" id="today-date"></span>
-      <span class="event"><span id="typewriter"></span><span class="cursor">|</span></span>
-    </div>
-    <div class="entry">
-      <span class="date">01.04.26</span>
-      <span class="event">Gets first beta user from door knocking around the neighborhood</span>
-    </div>
-    <div class="entry">
-      <span class="date">12.24.25</span>
-      <span class="event">First TikTok posted</span>
-    </div>
-    <div class="entry">
-      <span class="date">11.19.25</span>
-      <span class="event"><a href="https://www.aquaedge.co/" target="_blank">AquaEdge</a> Phase 3: AI teaching platform</span>
-    </div>
-    <div class="entry">
-      <span class="date">10.01.24</span>
-      <span class="event"><a href="https://www.aquaedge.co/" target="_blank">AquaEdge</a> Phase 2: AI salesperson &amp; lead capturing software</span>
-    </div>
-    <div class="entry">
-      <span class="date">05.01.24</span>
-      <span class="event">Founds <a href="https://www.aquaedge.co/" target="_blank">AquaEdge</a> — Phase 1: ad campaigns &amp; automated lead nurturing for auto detailing businesses</span>
-    </div>
-    <div class="entry">
-      <span class="date">12.12.23</span>
-      <span class="event">Starts Island Wash, a mobile carwash business</span>
-    </div>
-    <div class="entry">
-      <span class="date">08.15.22</span>
-      <span class="event">Rory quits video games forever</span>
-    </div>
-    <div class="entry">
-      <span class="date">08.19.20</span>
-      <span class="event">Starts a Roblox &amp; Minecraft YouTube channel</span>
-    </div>
-    <div class="entry">
-      <span class="date">09.21</span>
-      <span class="event">Rory is born</span>
-    </div>
+    <section class="writing" id="writing">
+      <h2>Writing</h2>
+
+      <!--
+        POST TEMPLATE — copy this block to add a new post (each post can link to its own page):
+
+        <div class="post">
+          <span class="post-date">MM.DD.YY</span>
+          <div class="post-body">
+            <a class="post-title" href="POST_URL">Post title goes here</a>
+            <span class="post-desc">Optional one-line description.</span>
+          </div>
+        </div>
+      -->
+
+      <p class="empty">Nothing to see here yet.</p>
+    </section>
   </main>
-
-  <footer>
-    <div class="footer-left">&copy; 2025 <a href="#">Rory Green</a></div>
-    <div class="footer-center">rg</div>
-    <div class="footer-right">Rory Time: <span id="clock"></span></div>
-  </footer>
-
-  <script>
-    (function() {
-      var now = new Date();
-      var mm = String(now.getMonth() + 1).padStart(2, '0');
-      var dd = String(now.getDate()).padStart(2, '0');
-      var yy = String(now.getFullYear()).slice(-2);
-      document.getElementById('today-date').textContent = mm + '.' + dd + '.' + yy;
-    })();
-
-    (function() {
-      var phrases = [
-        'More coming soon..',
-        'Building in public..',
-        'Probably shipping something..',
-        'Writing, thinking, making..',
-        'Work in progress..'
-      ];
-      var el = document.getElementById('typewriter');
-      var phraseIdx = 0;
-      var charIdx = 0;
-      var deleting = false;
-
-      function tick() {
-        var phrase = phrases[phraseIdx];
-
-        if (deleting) {
-          charIdx--;
-          el.textContent = phrase.substring(0, charIdx);
-        } else {
-          charIdx++;
-          el.textContent = phrase.substring(0, charIdx);
-        }
-
-        var delay = deleting ? 40 : 80;
-
-        if (!deleting && charIdx === phrase.length) {
-          delay = 2200;
-          deleting = true;
-        } else if (deleting && charIdx === 0) {
-          deleting = false;
-          phraseIdx = (phraseIdx + 1) % phrases.length;
-          delay = 600;
-        }
-
-        setTimeout(tick, delay);
-      }
-
-      tick();
-    })();
-
-    (function() {
-      function updateClock() {
-        var now = new Date();
-        var str = now.toLocaleTimeString('en-US', {
-          timeZone: 'America/New_York',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: true
-        });
-        document.getElementById('clock').textContent = str;
-      }
-      updateClock();
-      setInterval(updateClock, 1000);
-    })();
-  </script>
-
 </body>
 </html>
