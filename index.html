@@ -1,43 +1,274 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Rory Green</title>
-        <link rel="stylesheet" href="styles.css">
-  <meta name="viewport" content="width=420" />
-        <!-- Metadata -->
-        <!-- Primary Meta Tags -->
-        <title>Rory Green</title>
-        <meta name="title" content="Rory Green">
-        <meta name="description" content="rlg">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Rory Green</title>
+  <meta name="description" content="Rory Green — founder of AquaEdge.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rorygreen.co/">
+  <meta property="og:title" content="Rory Green">
+  <meta property="og:description" content="Rory Green — founder of AquaEdge.">
+  <style>
+    :root {
+      --black: #000;
+      --white: #fff;
+      --muted: #444;
+    }
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://rorygreen.co/">
-        <meta property="og:title" content="Rory Green">
-        <meta property="og:description" content="rlg">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
 
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding:
+        max(64px, env(safe-area-inset-top))
+        max(28px, env(safe-area-inset-right))
+        max(64px, env(safe-area-inset-bottom))
+        max(28px, env(safe-area-inset-left));
+    }
 
-</script>
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: auto 0;
+    }
 
-    </head>
+    h1 {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.3px;
+      margin-bottom: 22px;
+    }
 
-    <body>
-        <div>
-            <h1>Rory Green</h1>
-            <i></i>
-            <p>I’m the founder of <a href="https://aquaedge.co" target="_blank">AquaEdge</a>, which the AI teaching platform where students have voice to voice conversations with Phil - our AI teacher who remembers how they learn and helps them go from struggling to understanding.
-            <h2>Reach Out</h2>
-            <div class="social-container">
-                 <a class="social-link" href="https://www.linkedin.com/in/greenrory/" target="_blank">Linkedin</a> 
-                <a class="social-link" href="mailto:rory@aquaedge.co" target="_blank">Email</a>            </div>
+    .pitch {
+      font-size: 17px;
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
 
+    .pitch a {
+      color: var(--black);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ---- Dashboard-style cards ---- */
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 56px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      min-height: 44px;
+      padding: 16px 18px;
+      border: 1.5px solid var(--black);
+      border-radius: 14px;
+      background: var(--white);
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .card:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 3px;
+    }
+
+    .card-icon {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1.5px solid var(--black);
+      border-radius: 11px;
+    }
+
+    .card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--black);
+      stroke-width: 1.6;
+      fill: none;
+    }
+
+    .card-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .card-sub {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* ---- Writing ---- */
+
+    .writing h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      margin-bottom: 16px;
+    }
+
+    .empty {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .post {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 18px;
+      padding: 14px 0;
+      border-top: 1px solid var(--black);
+    }
+
+    .post:last-child {
+      border-bottom: 1px solid var(--black);
+    }
+
+    .post-date {
+      flex: 0 0 92px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .post-body {
+      flex: 1 1 240px;
+    }
+
+    .post-title {
+      color: var(--black);
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .post-title:hover {
+      text-decoration: underline;
+    }
+
+    .post-title:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 2px;
+    }
+
+    .post-desc {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    @media (max-width: 560px) {
+      h1 {
+        font-size: 26px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .post-date {
+        flex-basis: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Rory Green</h1>
+
+    <p class="pitch">
+      Hi, I'm Rory, founder of <a href="https://www.aquaedge.co/" target="_blank" rel="noopener">AquaEdge</a> -
+      the AI tutor (Phil) that talks to students through personalized questioning that makes them think and
+      actually understand topics holistically. Anyone can love learning if done so in a way that clicks with them.
+    </p>
+
+    <nav class="cards">
+      <a class="card" href="https://www.aquaedge.co/" target="_blank" rel="noopener">
+        <span class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M7 10v5c0 1 2.2 2.5 5 2.5s5-1.5 5-2.5v-5"/></svg>
+        </span>
+        <span class="card-text">
+          <span class="card-title">AquaEdge</span>
+          <span class="card-sub">Phil, the AI tutor</span>
+        </span>
+      </a>
+
+      <a class="card" href="mailto:rory@aquaedge.co">
+        <span class="card-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </span>
+        <span class="card-text">
+          <span class="card-title">Email</span>
+          <span class="card-sub">Get in touch</span>
+        </span>
+      </a>
+
+      <a class="card" href="https://www.linkedin.com/in/greenrory/" target="_blank" rel="noopener">
+        <span class="card-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v0M11 17v-4a2 2 0 0 1 4 0v4"/></svg>
+        </span>
+        <span class="card-text">
+          <span class="card-title">LinkedIn</span>
+          <span class="card-sub">Connect with me</span>
+        </span>
+      </a>
+    </nav>
+
+    <section class="writing" id="writing">
+      <h2>Writing</h2>
+
+      <!--
+        POST TEMPLATE — copy this block to add a new post (each post can link to its own page):
+
+        <div class="post">
+          <span class="post-date">MM.DD.YY</span>
+          <div class="post-body">
+            <a class="post-title" href="POST_URL">Post title goes here</a>
+            <span class="post-desc">Optional one-line description.</span>
+          </div>
         </div>
-    </body>
+      -->
+
+      <p class="empty">Nothing to see here yet.</p>
+    </section>
+  </main>
+</body>
 </html>

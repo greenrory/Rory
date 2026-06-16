@@ -1,85 +1,218 @@
-@font-face {
-    font-family: "GT America Extended Black";
-    src: url("//db.onlinewebfonts.com/t/1eb5591e6d07fc6d6141d5bedbb9eb2f.eot");
-    src: url("//db.onlinewebfonts.com/t/1eb5591e6d07fc6d6141d5bedbb9eb2f.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/1eb5591e6d07fc6d6141d5bedbb9eb2f.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/1eb5591e6d07fc6d6141d5bedbb9eb2f.woff") format("woff"), url("//db.onlinewebfonts.com/t/1eb5591e6d07fc6d6141d5bedbb9eb2f.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/1eb5591e6d07fc6d6141d5bedbb9eb2f.svg#GT America Extended Black") format("svg");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
 }
 
 body {
-    max-width: 400px;
-    background-image: url();
-    font-family: 'Graphik';
-    color: black;
-}
-
-h1,
-h2 {
-    font-family: 'GT-America-Extended-Black';
-    line-height: 2rem;
-
-}
-
-.social-container{
-    display: flex;
-    flex-direction: row;
-}
-
-.social-link{
-    margin: 2.5%;
-}
-
-@font-face {
-    font-family: 'GT-America-Extended-Black';
-    src: url('fonts/GT-America-Extended-Black.woff'),
-        url('fonts/GT-America-Extended-Black.eot'),
-        url('fonts/GT-America-Extended-Black.otf'),
-        url('fonts/GT-America-Extended-Black.ttf'),
-        url('fonts/GTAmerica-ExtendedBlack.eot'),
-        url('fonts/GTAmerica-ExtendedBlack.svg'),
-        url('fonts/GTAmerica-ExtendedBlack.woff2');
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Graphik';
-    src: url('fonts/Graphik-400-RegularItalic.otf') format("truetype"),
-        url('fonts/Graphik-RegularItalic.eot'),
-        url('fonts/Graphik-RegularItalic.svg'),
-        url('fonts/Graphik-RegularItalic.ttf'),
-        url('fonts/Graphik-RegularItalic.woff'),
-        url('fonts/Graphik-RegularItalic.woff2');
-    font-weight: normal;
-    font-style: italic;
-}
-
-ul {
-    display: grid;
-    gap: 0.75rem;
-    font-family: 'Graphik';
-    font-style: italic;
-}
-
-img {
-    height: 100px;
-    width: 100px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(246, 242, 234);
+  overflow-x: hidden;
+  color: #1a1a1a;
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-    color: black;
+  color: #1a1a1a;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 a:visited {
-    color: black;
+  color: #1a1a1a;
 }
 
-p {
-    font-family: 'Graphik';
-    font-style: italic;
+a:hover {
+  opacity: 0.6;
+}
+
+/* ---- Header ---- */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 28px 48px 16px 28px;
+  background: linear-gradient(
+    to bottom,
+    rgba(246, 242, 234, 1) 0%,
+    rgba(246, 242, 234, 1) 50%,
+    rgba(246, 242, 234, 0) 100%
+  );
+}
+
+.logo {
+  font-family: 'EB Garamond', Garamond, Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+}
+
+.social-links a {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 11.5px;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ---- Timeline ---- */
+
+.timeline {
+  flex: 1;
+  padding: 0 48px 60px 28px;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 50px;
+  padding: 9px 0;
+}
+
+.date {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+.event {
+  font-size: 14.5px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.event a {
+  text-decoration: underline;
+}
+
+/* ---- Typewriter cursor ---- */
+
+.cursor {
+  display: inline-block;
+  font-weight: 300;
+  margin-left: 1px;
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ---- Footer ---- */
+
+footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 32px 48px 36px 28px;
+  background: linear-gradient(
+    to top,
+    rgba(246, 242, 234, 1) 0%,
+    rgba(246, 242, 234, 1) 50%,
+    rgba(246, 242, 234, 0) 100%
+  );
+}
+
+.footer-left,
+.footer-right {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.2px;
+}
+
+.footer-left a {
+  text-decoration: underline;
+}
+
+.footer-center {
+  font-family: 'EB Garamond', Garamond, Georgia, serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+}
+
+.footer-right {
+  white-space: nowrap;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 680px) {
+  header {
+    padding: 24px 20px 12px 16px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .social-links {
+    gap: 14px;
+  }
+
+  .social-links a {
+    font-size: 10.5px;
+  }
+
+  .timeline {
+    padding: 0 20px 40px 16px;
+  }
+
+  .entry {
+    grid-template-columns: 72px 1fr;
+    gap: 28px;
+    padding: 7px 0;
+  }
+
+  .date {
+    font-size: 11.5px;
+  }
+
+  .event {
+    font-size: 13.5px;
+  }
+
+  footer {
+    padding: 24px 20px 24px 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-left,
+  .footer-right {
+    font-size: 10.5px;
+  }
+
+  .footer-center {
+    font-size: 14px;
+  }
 }
