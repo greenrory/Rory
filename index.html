@@ -167,6 +167,7 @@
       flex: 0 0 92px;
       color: var(--muted);
       font-size: 14px;
+      font-variant-numeric: tabular-nums lining-nums;
     }
 
     .post-body {
@@ -256,18 +257,28 @@
       <h2>Writing</h2>
 
       <!--
-        POST TEMPLATE — copy this block to add a new post (each post can link to its own page):
+        ADD A NEW ESSAY:
+        1. Duplicate the "essays/_template" folder and rename it to your slug
+           (lowercase, spaces -> hyphens, no punctuation). See the instructions
+           inside that file.
+        2. Copy ONE .post block below, change the date, the title text, and the
+           href to "essays/<your-slug>/". The post-desc line is optional.
 
         <div class="post">
           <span class="post-date">MM.DD.YY</span>
           <div class="post-body">
-            <a class="post-title" href="POST_URL">Post title goes here</a>
+            <a class="post-title" href="essays/your-slug/">Essay title here.</a>
             <span class="post-desc">Optional one-line description.</span>
           </div>
         </div>
       -->
 
-      <p class="empty">Nothing to see here yet.</p>
+      <div class="post">
+        <span class="post-date">06.17.26</span>
+        <div class="post-body">
+          <a class="post-title" href="essays/why-people-are-afraid-of-learning/">why people are afraid of learning.</a>
+        </div>
+      </div>
     </section>
   </main>
 </body>

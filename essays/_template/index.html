@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <!-- CHANGE: page title (keep " — Rory Green" at the end) -->
+  <title>Essay title here. — Rory Green</title>
+  <meta name="description" content="An essay by Rory Green.">
+  <meta property="og:type" content="article">
+  <!-- CHANGE: og:url to https://rorygreen.co/essays/<your-slug> -->
+  <meta property="og:url" content="https://rorygreen.co/essays/your-slug-here">
+  <!-- CHANGE: og:title to the essay title -->
+  <meta property="og:title" content="Essay title here.">
+  <meta property="og:description" content="An essay by Rory Green.">
+  <style>
+    :root {
+      --black: #000;
+      --white: #fff;
+      --muted: #444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding:
+        max(64px, env(safe-area-inset-top))
+        max(28px, env(safe-area-inset-right))
+        max(64px, env(safe-area-inset-bottom))
+        max(28px, env(safe-area-inset-left));
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+
+    .back:hover {
+      color: var(--black);
+      text-decoration: underline;
+    }
+
+    .back:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 2px;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.3px;
+      margin-bottom: 28px;
+    }
+
+    .essay-body p {
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 1.1em;
+    }
+
+    .essay-body em {
+      font-style: italic;
+    }
+
+    @media (max-width: 560px) {
+      h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!--
+    ===========================================================
+    HOW TO ADD A NEW ESSAY
+    ===========================================================
+    1. Duplicate this whole "_template" folder.
+    2. Rename the copied folder to your slug:
+       lowercase, spaces -> hyphens, no punctuation.
+       "Why People Are Afraid of Learning." -> "why-people-are-afraid-of-learning"
+       It then lives at:  rorygreen.co/essays/<your-slug>
+    3. In THIS file, change:
+         - the <title>
+         - the og:url and og:title meta tags
+         - the <h1> (essay title)
+         - the paragraphs inside <div class="essay-body"> (paste your essay,
+           one <p>...</p> per paragraph; wrap any italic words in <em>...</em>)
+    4. In the homepage /index.html, copy a row inside the "Writing" section and
+       point its href to "essays/<your-slug>/" with the essay title as the text.
+    ===========================================================
+  -->
+  <main class="container">
+    <a class="back" href="../../#writing">&larr; back</a>
+
+    <!-- ESSAY TITLE -->
+    <h1>Essay title here.</h1>
+
+    <!-- ESSAY BODY: one <p> per paragraph; use <em>word</em> for italics -->
+    <div class="essay-body">
+      <p>First paragraph goes here.</p>
+
+      <p>Second paragraph goes here.</p>
+    </div>
+  </main>
+</body>
+</html>
