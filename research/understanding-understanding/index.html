@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Modeling Understanding: Predicting Student Answer Correctness — Rory Green</title>
+  <meta name="description" content="Independent research on knowledge tracing and predicting student answer correctness.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://rorygreen.co/research/understanding-understanding">
+  <meta property="og:title" content="Modeling Understanding: Predicting Student Answer Correctness">
+  <meta property="og:description" content="Independent research on knowledge tracing and predicting student answer correctness.">
+  <style>
+    :root {
+      --black: #000;
+      --white: #fff;
+      --muted: #444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding:
+        max(64px, env(safe-area-inset-top))
+        max(28px, env(safe-area-inset-right))
+        max(64px, env(safe-area-inset-bottom))
+        max(28px, env(safe-area-inset-left));
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .back {
+      display: inline-block;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 15px;
+      margin-bottom: 32px;
+    }
+
+    .back:hover {
+      color: var(--black);
+      text-decoration: underline;
+    }
+
+    .back:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 2px;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.3px;
+      margin-bottom: 8px;
+    }
+
+    .paper-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .paper-meta span {
+      display: block;
+    }
+
+    .paper-body h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      margin-top: 2.2em;
+      margin-bottom: 0.75em;
+    }
+
+    .paper-body h2:first-child {
+      margin-top: 0;
+    }
+
+    .paper-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+    }
+
+    .paper-body p {
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 1.1em;
+    }
+
+    .paper-body em {
+      font-style: italic;
+    }
+
+    .paper-body a {
+      color: var(--black);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .paper-body ul {
+      margin-bottom: 1.1em;
+      padding-left: 1.4em;
+    }
+
+    .paper-body li {
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 0.5em;
+    }
+
+    .paper-body code {
+      font-family: inherit;
+      font-size: 0.95em;
+    }
+
+    .figure {
+      margin: 1.8em 0;
+      border: 1.5px solid var(--black);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .figure-caption {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .figure-caption strong {
+      color: var(--black);
+      font-weight: 700;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.4em 0 1.6em;
+      border: 1.5px solid var(--black);
+      border-radius: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--black);
+    }
+
+    tr:last-child th,
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    th {
+      font-weight: 700;
+    }
+
+    .refs p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 0.9em;
+      padding-left: 1.8em;
+      text-indent: -1.8em;
+    }
+
+    .reflection {
+      margin-top: 2.4em;
+      border: 1.5px solid var(--black);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .reflection summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      font-size: 17px;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .reflection summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .reflection summary::after {
+      content: "+";
+      float: right;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .reflection[open] summary::after {
+      content: "-";
+    }
+
+    .reflection summary:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: -2px;
+    }
+
+    .reflection-body {
+      padding: 0 18px 18px;
+      border-top: 1px solid var(--black);
+    }
+
+    .reflection-body p {
+      font-size: 17px;
+      line-height: 1.7;
+      margin-top: 1.1em;
+      margin-bottom: 1.1em;
+    }
+
+    .reflection-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .paper-footer {
+      margin-top: 1.6em;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    @media (max-width: 560px) {
+      h1 {
+        font-size: 26px;
+      }
+
+      th,
+      td {
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a class="back" href="../../">&larr; back</a>
+
+    <h1>Modeling Understanding: Predicting Student Answer Correctness</h1>
+    <div class="paper-meta">
+      <span>Rory Green</span>
+    </div>
+
+    <article class="paper-body">
+      <h2>Abstract</h2>
+      <p>A barrier in building adaptive learning systems is that "understanding" cannot be measured directly. So this project takes a different path: instead of measuring understanding, it predicts a measurable proxy for it - the probability that a student answers their next question correctly, given how they have performed so far. For each answer in the ASSISTments 2009-2010 Skill Builder dataset, the model used two pieces of the student's history on that skill: the number of previous attempts and the number answered correctly. The current attempt's outcome was omitted from the second feature so it could not leak the answer into the model. A logistic regression model reached a held-out ROC-AUC of 0.676 against a random baseline of 0.500. Using only these two features, the model conveyed a real but limited signal and provided a baseline for testing more complex knowledge-tracing models on the same dataset. Moreover, it is an early piece of something much bigger: software that could one day help personalize teaching for students across the globe.</p>
+
+      <h2>Introduction</h2>
+      <p>The motivation for this project was a question about learning: can a system tell whether a student actually understands something before they have fully shown it? If it can - even somewhat - then a learning platform can respond to a real signal instead of just guessing without responsiveness. Using real data, it could challenge the student who is ready and support the student who is having a hard time.</p>
+
+      <p>"Understanding" as a term is unclear, and it cannot be measured directly. So this project shrinks the impossibly large question into a smaller and more measurable one. The question was reframed to "Given this student's past answers, what is the probability that the next one is correct?" from "Does this student understand?" This is the established problem of knowledge tracing.<sup>1</sup> Correctly predicting the next answer is a modest but honest piece of the much bigger goal of modeling understanding completely.</p>
+
+      <p>The simple model provides a baseline that more complex models should score better than, and every part of the prediction is interpretable. Its interpretability made its two features easier to examine and helped reveal problems such as data leakage, which occurred more than once during development. The final result is a reproducible baseline, and the problems that needed fixing were documented along the way.</p>
+
+      <h2>Data</h2>
+      <p>The data came from the ASSISTments 2009-2010 Skill Builder dataset, which contains records of middle-school students solving mathematics problems through an online tutoring platform.<sup>2</sup> Each row identifies the student, the skill assigned to the problem, and whether the student answered correctly.</p>
+
+      <p>There was a key property of the file that needed special handling. Problems tagged with multiple skills are duplicated - the same interaction appears once per skill tag - and this meant the raw row count was overstating the number of distinct interactions. The raw file contained 525,534 rows across 30 columns, but this figure includes the multi-skill duplication and is not an accurate count of unique interactions. The number of distinct students, 4,217, is the more reliable indicator of the dataset's scale. This also meant the data had to be restructured before the true interactions could be counted. After deduplication on <code>order_id</code>, the unique interactions added up to 346,860 (duplication inflation: 1.52×).</p>
+
+      <h2>Methods</h2>
+
+      <h3>Feature engineering</h3>
+      <p>Duplicates were removed on <code>order_id</code> before feature computation.</p>
+
+      <p>The dataset did not include each student's number of previous attempts or previous correct answers; for each interaction, two features were computed from the student's prior response history on that specific skill: the count of prior attempts, and the count of those prior attempts that were correct. Interactions were grouped by (student, skill), and within each group a running count and running sum were taken in the log's existing order. The prior-attempt count begins at zero, so an attempt is never counted in its own history. The prior-correct count subtracts the current attempt's own outcome from the running sum:</p>
+
+      <p>past_correct_answers = cumulative_sum(correct) - current_correct</p>
+
+      <p>A cumulative sum includes the current row. If it was used directly, it would embed the current answer's correctness into that same answer's features, letting the model read part of the label from its input. Subtracting the current outcome leaves only prior information, and that keeps the results authentic.</p>
+
+      <h3>Model</h3>
+      <p>The classifier is logistic regression, which models the probability of a correct answer as the logistic (sigmoid) function of a weighted sum of the two features:</p>
+
+      <p>P(correct) = &sigma;(w<sub>1</sub>&middot;past_attempts_on_skill + w<sub>2</sub>&middot;past_correct_answers + b)</p>
+
+      <p>The notebook names these features <code>past_attempts_on_skill</code> and <code>past_correct_answers</code>.</p>
+
+      <p>During training, the model learns a weight for each feature and an intercept. These values determine how prior attempts and prior correct answers affect the predicted probability. With the same data and settings, the training process is reproducible. This model uses the basic idea behind Performance Factors Analysis: predicting a student's next response from their previous performance on that skill.<sup>3</sup></p>
+
+      <h3>Evaluation</h3>
+      <p>The rows were split 80/20 into training and held-out test sets with a fixed random seed of 2. The model trained only on the training section and was evaluated only on the untouched test section. Performance was measured with ROC-AUC - the probability that a randomly chosen correct attempt receives a higher predicted score than a randomly chosen incorrect one - where 0.5 is random and 1.0 is perfect. AUC was chosen over raw accuracy because the dataset's base rate (roughly two-thirds of attempts are correct) makes accuracy misleading: a model that always predicts "correct" scores roughly 66% accuracy while carrying no predictive skill at all, and AUC correctly grades that model at 0.5 (it cannot distinguish correct answers from incorrect ones).</p>
+
+      <h2>Results</h2>
+      <p>On the held-out test set, the model achieved a ROC-AUC of approximately 0.676 against the random baseline of 0.500. Raw accuracy was 0.6825, compared to 0.6612 for an "always predict correct" strategy - a small gap that shows exactly why AUC, instead of accuracy, was the primary metric. The learned weights were interpretable and made sense: prior correct answers carried a positive weight (more past success raises the predicted probability), while raw prior attempts carried a small negative weight (a high number of attempts weakly signals struggle). The intercept corresponded to a baseline of approximately 66%, matching the dataset's overall proportion of correct answers.</p>
+
+      <figure class="figure">
+        <img src="../roc.png" alt="ROC curve for logistic regression baseline on ASSISTments 2009, AUC 0.676">
+        <figcaption class="figure-caption"><strong>Figure 1.</strong> ROC curve for the logistic regression baseline on the held-out test set. The curve lies above the random diagonal, showing real predictive signal from the two engineered history features.</figcaption>
+      </figure>
+
+      <h3>Two corrections during development</h3>
+      <p>During development, two corrections were made, and each lowered a score that had looked better than it was:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Configuration</th>
+              <th>Data</th>
+              <th>AUC</th>
+              <th>Interpretation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Synthetic sandbox</td>
+              <td>Generated</td>
+              <td>~0.81</td>
+              <td>Model reverse-engineered its own generating formula; no real signal</td>
+            </tr>
+            <tr>
+              <td>Raw real data</td>
+              <td>ASSISTments 2009</td>
+              <td>~0.74</td>
+              <td>Inflated by multi-skill duplicate rows leaking across the split</td>
+            </tr>
+            <tr>
+              <td>Deduplicated real data</td>
+              <td>ASSISTments 2009</td>
+              <td>~0.676</td>
+              <td>Honest held-out estimate</td>
+            </tr>
+            <tr>
+              <td>Random baseline</td>
+              <td>-</td>
+              <td>0.500</td>
+              <td>Chance</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The first configuration used synthetically generated data; its high score came from the model recovering the formula that produced the data, not from any real learning pattern. The second used real data but computed features before the multi-skill duplication was handled, so duplicated copies of single interactions were split across training and test sets - a form of leakage that inflated the score. After deduplicating on the interaction identifier, the AUC settled at approximately 0.676. A score that lowers after leakage is removed is a more accurate estimate of the model's true performance - not a worse result.</p>
+
+      <h2>Discussion</h2>
+      <p>This research found that two simple, interpretable features - how much a student has practiced a skill and how well they have done so far - predict the next answer meaningfully better than chance but far from perfectly. An AUC near 0.676, well below 1.0, shows how much these two features cannot capture about a student.</p>
+
+      <p>Students with identical recorded histories still produce different outcomes: they get tired, they guess, they slip on material they know, or they figure something out the moment before answering. None of that fits inside two running counts. Overall, this research demonstrates that predicting next-answer correctness is a small but meaningful step toward modeling understanding.</p>
+
+      <h2>Limitations</h2>
+      <p>This is a baseline and carries the limitations of one:</p>
+      <ul>
+        <li><strong>Evaluation scope.</strong> The test set contained new responses from students who also appeared in the training data.</li>
+        <li><strong>Single split.</strong> The reported AUC comes from one split, so variation across splits was not measured.</li>
+        <li><strong>Assumed chronological order.</strong> The features were calculated using the dataset's existing row order because no timestamp was used for sorting. If the rows were not chronological, some "prior" attempts may not represent the student's actual history.</li>
+        <li><strong>Two features.</strong> Factors that are not modeled include question difficulty, response time, and the possibility of forgetting between attempts.</li>
+        <li><strong>Multi-skill simplification.</strong> The deduplication kept one skill tag per problem and discarded the rest.</li>
+      </ul>
+
+      <h2>References</h2>
+      <div class="refs">
+        <p>[1] Corbett, A. T.; Anderson, J. R. Knowledge Tracing: Modeling the Acquisition of Procedural Knowledge. <em>User Modeling and User-Adapted Interaction</em> 1994, 4 (4), 253-278.</p>
+        <p>[2] Feng, M.; Heffernan, N.; Koedinger, K. Addressing the Assessment Challenge with an Online System That Tutors as It Assesses. <em>User Modeling and User-Adapted Interaction</em> 2009, 19 (3), 243-266.</p>
+        <p>[3] Pavlik, P. I.; Cen, H.; Koedinger, K. R. Performance Factors Analysis - A New Alternative to Knowledge Tracing. <em>Proceedings of the 14th International Conference on Artificial Intelligence in Education</em> 2009, 531-538.</p>
+      </div>
+    </article>
+
+    <details class="reflection">
+      <summary>Reflection: Why</summary>
+      <div class="reflection-body">
+        <p>I did not start this project for the purpose of data science or machine learning. I started it because I care about a question that has very little to do with code: how do you tell whether someone actually understands something? That question led to an even bigger question: how do you build something that helps people fall in love with learning? That question is what I am building <a href="https://www.aquaedge.co/" target="_blank" rel="noopener">AquaEdge</a> to answer. Those questions are why I did this. This model was the most tangible way I could find to get a grip on them.</p>
+
+        <p>I shrank the impossible question down to a measurable one: from "does this student understand?" to "can I predict their next answer from their past ones?" That is a much smaller question, and getting even a partial answer to it turned out to be harder, and more revealing, than I expected.</p>
+
+        <p>The simple model, using two pieces of a student's history, predicted their next answer meaningfully better than a coin flip but nowhere near perfectly. However, I did not anticipate how much I would learn from the number being low. Three separate times during this project, a score looked impressive and turned out to be the model cheating - seeing information it should not have. The last time, in a preliminary DKT follow-up, a model scored almost perfectly (AUC 0.9884) because each input contained the answer it was predicting, and my first instinct was excitement. The correct instinct was suspicion, and learning to treat "too good" as a warning instead of a win was the real education here.</p>
+
+        <p>Two students with the same histories still do different things, and that is why the model that sees only these two numbers can never be perfect. A bad morning, a sudden insight, a misread question - these are invisible to two numbers. That separation between what the model can predict and what actually happens is the part of a student that couldn't be logged on a data table. This project is a step toward understanding people well enough to help them. The mission is to do whatever it takes, to make everyone love learning.</p>
+      </div>
+    </details>
+
+    <p class="paper-footer">Logistic regression on ASSISTments 2009 &middot; Independent research write-up with reflection.</p>
+  </main>
+</body>
+</html>
